@@ -54,8 +54,8 @@ public class AppService implements AppServiceProvider {
      * <br>
      * <br>
      */
-//    public static String http://117.72.91.163:8888/*请仔细阅读上面的注释，http 前缀不能省略*/ = "http://wildfirechat.net:8888";
-    public static String http://117.72.91.163:8888  /*请仔细阅读上面的注释*/ = "https://app.wildfirechat.net";
+//    public static String APP_SERVER_ADDRESS/*请仔细阅读上面的注释，http 前缀不能省略*/ = "http://wildfirechat.net:8888";
+    public static String APP_SERVER_ADDRESS  /*请仔细阅读上面的注释*/ = "http://117.72.91.163:8888";
 
     private AppService() {
 
@@ -73,7 +73,7 @@ public class AppService implements AppServiceProvider {
 
     public void passwordLogin(String mobile, String password, LoginCallback callback) {
 
-        String url = http://117.72.91.163:8888 + "/login_pwd";
+        String url = APP_SERVER_ADDRESS + "/login_pwd";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", mobile);
         params.put("password", password);
@@ -107,7 +107,7 @@ public class AppService implements AppServiceProvider {
 
     public void smsLogin(String phoneNumber, String authCode, LoginCallback callback) {
 
-        String url = http://117.72.91.163:8888 + "/login";
+        String url = APP_SERVER_ADDRESS + "/login";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", phoneNumber);
         params.put("code", authCode);
@@ -152,7 +152,7 @@ public class AppService implements AppServiceProvider {
 
 
     public void resetPassword(String mobile, String code, String password, SimpleCallback<StatusResult> callback) {
-        String url = http://117.72.91.163:8888 + "/reset_pwd";
+        String url = APP_SERVER_ADDRESS + "/reset_pwd";
         Map<String, Object> params = new HashMap<>();
         if (!TextUtils.isEmpty(mobile)) {
             params.put("mobile", mobile);
@@ -164,7 +164,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void changePassword(String oldPassword, String newPassword, SimpleCallback<StatusResult> callback) {
-        String url = http://117.72.91.163:8888 + "/change_pwd";
+        String url = APP_SERVER_ADDRESS + "/change_pwd";
         Map<String, Object> params = new HashMap<>();
         params.put("oldPassword", oldPassword);
         params.put("newPassword", newPassword);
@@ -181,7 +181,7 @@ public class AppService implements AppServiceProvider {
 
     public void requestAuthCode(String phoneNumber, SendCodeCallback callback) {
 
-        String url = http://117.72.91.163:8888 + "/send_code";
+        String url = APP_SERVER_ADDRESS + "/send_code";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", phoneNumber);
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
@@ -204,7 +204,7 @@ public class AppService implements AppServiceProvider {
 
     public void requestResetAuthCode(String phoneNumber, SendCodeCallback callback) {
 
-        String url = http://117.72.91.163:8888 + "/send_reset_code";
+        String url = APP_SERVER_ADDRESS + "/send_reset_code";
         Map<String, Object> params = new HashMap<>();
         if (!TextUtils.isEmpty(phoneNumber)) {
             params.put("mobile", phoneNumber);
@@ -234,7 +234,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void scanPCLogin(String token, ScanPCCallback callback) {
-        String url = http://117.72.91.163:8888 + "/scan_pc";
+        String url = APP_SERVER_ADDRESS + "/scan_pc";
         url += "/" + token;
         OKHttpHelper.post(url, null, new SimpleCallback<PCSession>() {
             @Override
@@ -260,7 +260,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void confirmPCLogin(String token, String userId, PCLoginCallback callback) {
-        String url = http://117.72.91.163:8888 + "/confirm_pc";
+        String url = APP_SERVER_ADDRESS + "/confirm_pc";
 
         Map<String, Object> params = new HashMap<>(3);
         params.put("user_id", userId);
@@ -284,7 +284,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void cancelPCLogin(String token, PCLoginCallback callback) {
-        String url = http://117.72.91.163:8888 + "/cancel_pc";
+        String url = APP_SERVER_ADDRESS + "/cancel_pc";
 
         Map<String, Object> params = new HashMap<>(3);
         params.put("token", token);
@@ -309,7 +309,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void getGroupAnnouncement(String groupId, AppServiceProvider.GetGroupAnnouncementCallback callback) {
         //从SP中获取到历史数据callback回去，然后再从网络刷新
-        String url = http://117.72.91.163:8888 + "/get_group_announcement";
+        String url = APP_SERVER_ADDRESS + "/get_group_announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);
@@ -330,7 +330,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void updateGroupAnnouncement(String groupId, String announcement, AppServiceProvider.UpdateGroupAnnouncementCallback callback) {
         //更新到应用服务，再保存到本地SP中
-        String url = http://117.72.91.163:8888 + "/put_group_announcement";
+        String url = APP_SERVER_ADDRESS + "/put_group_announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);
@@ -377,7 +377,7 @@ public class AppService implements AppServiceProvider {
         SharedPreferences sp = context.getSharedPreferences("log_history", Context.MODE_PRIVATE);
 
         String userId = ChatManager.Instance().getUserId();
-        String url = http://117.72.91.163:8888 + "/logs/" + userId + "/upload";
+        String url = APP_SERVER_ADDRESS + "/logs/" + userId + "/upload";
 
         int toUploadCount = 0;
         Collections.sort(filePaths);
@@ -417,7 +417,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void changeName(String newName, SimpleCallback<Void> callback) {
-        String url = http://117.72.91.163:8888 + "/change_name";
+        String url = APP_SERVER_ADDRESS + "/change_name";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("newName", newName);
@@ -440,7 +440,7 @@ public class AppService implements AppServiceProvider {
             return;
         }
 
-        String url = http://117.72.91.163:8888 + "/fav/list";
+        String url = APP_SERVER_ADDRESS + "/fav/list";
         Map<String, Object> params = new HashMap<>();
         params.put("id", startId);
         params.put("count", count);
@@ -490,7 +490,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void addFavoriteItem(FavoriteItem item, SimpleCallback<Void> callback) {
-        String url = http://117.72.91.163:8888 + "/fav/add";
+        String url = APP_SERVER_ADDRESS + "/fav/add";
         Map<String, Object> params = new HashMap<>();
         params.put("messageUid", item.getMessageUid());
         params.put("type", item.getFavType());
@@ -509,7 +509,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void removeFavoriteItem(int favId, SimpleCallback<Void> callback) {
-        String url = http://117.72.91.163:8888 + "/fav/del/" + favId;
+        String url = APP_SERVER_ADDRESS + "/fav/del/" + favId;
         OKHttpHelper.post(url, null, callback);
     }
 
@@ -517,12 +517,12 @@ public class AppService implements AppServiceProvider {
         if (TextUtils.isEmpty(Config.IM_SERVER_HOST)
             || Config.IM_SERVER_HOST.startsWith("http")
             || Config.IM_SERVER_HOST.contains(":")
-            || TextUtils.isEmpty(http://117.72.91.163:8888)
-            || (!http://117.72.91.163:8888.startsWith("http") && !http://117.72.91.163:8888.startsWith("https"))
+            || TextUtils.isEmpty(APP_SERVER_ADDRESS)
+            || (!APP_SERVER_ADDRESS.startsWith("http") && !APP_SERVER_ADDRESS.startsWith("https"))
             || Config.IM_SERVER_HOST.equals("127.0.0.1")
-            || http://117.72.91.163:8888.contains("127.0.0.1")
-            || (!Config.IM_SERVER_HOST.contains("wildfirechat.net") && http://117.72.91.163:8888.contains("wildfirechat.net"))
-            || (Config.IM_SERVER_HOST.contains("wildfirechat.net") && !http://117.72.91.163:8888.contains("wildfirechat.net"))
+            || APP_SERVER_ADDRESS.contains("127.0.0.1")
+            || (!Config.IM_SERVER_HOST.contains("wildfirechat.net") && APP_SERVER_ADDRESS.contains("wildfirechat.net"))
+            || (Config.IM_SERVER_HOST.contains("wildfirechat.net") && !APP_SERVER_ADDRESS.contains("wildfirechat.net"))
         ) {
             Toast.makeText(context, "配置错误，请检查配置，应用即将关闭...", Toast.LENGTH_LONG).show();
             new Handler().postDelayed(() -> {
@@ -551,7 +551,7 @@ public class AppService implements AppServiceProvider {
         if (callback == null) {
             return;
         }
-        String url = http://117.72.91.163:8888 + "/conference/get_my_id";
+        String url = APP_SERVER_ADDRESS + "/conference/get_my_id";
         OKHttpHelper.post(url, null, new SimpleCallback<String>() {
 
             @Override
@@ -578,7 +578,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void createConference(ConferenceInfo info, GeneralCallback2 callback) {
-        String url = http://117.72.91.163:8888 + "/conference/create";
+        String url = APP_SERVER_ADDRESS + "/conference/create";
         OKHttpHelper.post(url, info, new SimpleCallback<String>() {
             @Override
             public void onUiSuccess(String response) {
@@ -607,7 +607,7 @@ public class AppService implements AppServiceProvider {
         if (callback == null) {
             return;
         }
-        String url = http://117.72.91.163:8888 + "/conference/info";
+        String url = APP_SERVER_ADDRESS + "/conference/info";
         Map<String, String> map = new HashMap<>();
         map.put("conferenceId", conferenceId);
         if (!TextUtils.isEmpty(password)) {
@@ -629,7 +629,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void destroyConference(String conferenceId, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/destroy/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/destroy/" + conferenceId;
         OKHttpHelper.post(url, null, new SimpleCallback<StatusResult>() {
 
             @Override
@@ -650,7 +650,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void favConference(String conferenceId, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/fav/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/fav/" + conferenceId;
         OKHttpHelper.post(url, null, new SimpleCallback<StatusResult>() {
             @Override
             public void onUiSuccess(StatusResult statusResult) {
@@ -675,7 +675,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void unfavConference(String conferenceId, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/unfav/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/unfav/" + conferenceId;
         OKHttpHelper.post(url, null, new SimpleCallback<StatusResult>() {
             @Override
             public void onUiSuccess(StatusResult statusResult) {
@@ -699,7 +699,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void isFavConference(String conferenceId, BooleanCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/is_fav/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/is_fav/" + conferenceId;
         OKHttpHelper.post(url, null, new SimpleCallback<StatusResult>() {
             @Override
             public void onUiSuccess(StatusResult statusResult) {
@@ -725,7 +725,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void getFavConferences(FavConferenceCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/fav_conferences";
+        String url = APP_SERVER_ADDRESS + "/conference/fav_conferences";
         OKHttpHelper.post(url, null, new SimpleCallback<List<ConferenceInfo>>() {
             @Override
             public void onUiSuccess(List<ConferenceInfo> favConferences) {
@@ -745,7 +745,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void updateConference(ConferenceInfo conferenceInfo, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/put_info";
+        String url = APP_SERVER_ADDRESS + "/conference/put_info";
         OKHttpHelper.post(url, conferenceInfo, new SimpleCallback<StatusResult>() {
             @Override
             public void onUiSuccess(StatusResult statusResult) {
@@ -765,7 +765,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void recordConference(String conferenceId, boolean record, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/recording/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/recording/" + conferenceId;
         Map<String, Boolean> params = new HashMap<>();
         params.put("recording", record);
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
@@ -787,7 +787,7 @@ public class AppService implements AppServiceProvider {
 
     @Override
     public void setConferenceFocusUserId(String conferenceId, String userId, GeneralCallback callback) {
-        String url = http://117.72.91.163:8888 + "/conference/focus/" + conferenceId;
+        String url = APP_SERVER_ADDRESS + "/conference/focus/" + conferenceId;
         Map<String, String> params = new HashMap<>();
         params.put("userId", TextUtils.isEmpty(userId) ? "" : userId);
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
