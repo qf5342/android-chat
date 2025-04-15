@@ -45,7 +45,7 @@ public class Config {
     public static String FILE_TRANSFER_ID = "wfc_file_transfer";
 
     // 允许主动加入多人音视频通话
-    public static boolean ENABLE_MULTI_CALL_AUTO_JOIN = false;
+    public static boolean ENABLE_MULTI_CALL_AUTO_JOIN = true;
 
     /**
      * 允许撤回多长时间内的消息，不能长于服务端相关配置，单位是秒
@@ -62,12 +62,12 @@ public class Config {
      * <p>
      * 如果不想显示工作台，置为 null 即可
      */
-    public static String WORKSPACE_URL = "https://open.wildfirechat.cn/work.html";
+    public static String WORKSPACE_URL = null;
 
     /**
      * 组织通讯录服务地址，如果没有部署，可以设置为null
      */
-    public static String ORG_SERVER_ADDRESS/*请仔细阅读上面的注释*/ = "https://org.wildfirechat.cn";
+    public static String ORG_SERVER_ADDRESS/*请仔细阅读上面的注释"https://org.wildfirechat.cn"*/ = null;
 
     /**
      * 发送日志命令，当发送此文本消息时，会把协议栈日志发送到当前会话中，为空时关闭此功能。
@@ -77,7 +77,7 @@ public class Config {
     /**
      * 语音消息最长时长，单位是秒
      */
-    public static int DEFAULT_MAX_AUDIO_RECORD_TIME_SECOND = 60;
+    public static int DEFAULT_MAX_AUDIO_RECORD_TIME_SECOND = 120;
 
     /**
      * 应用层用于存储配置信息(userId，token等)的SP文件的名字
@@ -105,5 +105,5 @@ public class Config {
     public static int AUDIO_MESSAGE_AMPLIFICATION_FACTOR = 3;
 
     // 是否开启水印功能
-    public static boolean ENABLE_WATER_MARK = true;
+    public static boolean ENABLE_WATER_MARK = false;
 }
