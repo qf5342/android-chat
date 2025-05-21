@@ -234,7 +234,7 @@ public class ChatManager {
 
     private int backupAddressStrategy = 0;
     private String backupAddressHost = null;
-    private int backupAddressPort = 80;
+    private int backupAddressPort = 81;
     private String protoUserAgent = null;
     private final Map<String, String> protoHttpHeaderMap = new ConcurrentHashMap<>();
 
@@ -7821,14 +7821,14 @@ public class ChatManager {
     // shortlink port
     public int getPort() {
         if (!checkRemoteService()) {
-            return 80;
+            return 81;
         }
 
         try {
             return mClient.getPort();
         } catch (RemoteException e) {
             e.printStackTrace();
-            return 80;
+            return 81;
         }
     }
 
